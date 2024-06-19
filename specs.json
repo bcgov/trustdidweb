@@ -1,0 +1,34 @@
+{
+  "specs": [
+    {
+      "title": "Trust DID Web - The did:tdw DID Method",
+      "spec_directory": "./spec",
+      "markdown_paths": [
+        "header.md",
+        "abstract.md",
+        "definitions.md",
+        "overview.md",
+        "specification.md",
+        "security_and_privacy.md",
+        "implementors_guide.md",
+        "example.md",
+        "references.md"
+      ],
+      "source": {
+        "host": "github",
+        "account": "bcgov",
+        "repo": "trustdidweb"
+      },
+      "output_path": "./",
+      "logo": "tdw.jpg",
+      "logo_link": "https://github.com/bcgov/trustdidweb",
+      "katex": true,
+      "external_specs": [
+        {
+          "LINKED-VP": "https://identity.foundation/linked-vp/",
+          "TOIP": "https://trustoverip.github.io/ctwg-main-glossary/"
+        }
+      ]
+    }
+  ]
+}
