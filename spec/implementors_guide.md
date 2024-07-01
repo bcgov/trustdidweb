@@ -7,9 +7,7 @@ Proof of concept implementations of `did:tdw` software for [[ref: DID Controller
 - Typescript: [https://github.com/bcgov/trustdidweb-ts](https://github.com/bcgov/trustdidweb-ts)
 - Python: [https://github.com/bcgov/trustdidweb-py](https://github.com/bcgov/trustdidweb-py)
 
-Both currently (as of 2024.04.11) support all of the features of `did:tdw` except for [[ref:  Key Pre-Rotation]] and [[ref: Verifiable Conditions]].
-
-The Typescript implementation is currently less than 800 lines of Typescript code.
+Both currently (as of 2024.04.11) support all of the features of the core `did:tdw` including [[ref:  Key Pre-Rotation]]. Not yet supported is the the concept of [[ref: approvers]] (known elsewhere as [[ref: witnesses]]).
 
 ### Using Pre-Rotation Keys
 
@@ -143,3 +141,7 @@ does not start at `versionId` of `1`. Further, resolving `<new-did>?versionId=1`
 is going to return a DIDDoc with the top-level `id` equal to the `<old-did>`.
 This is useful from a business perspective, but unexpected from a
 [[spec:DID-CORE]] perspective.
+
+### Approvers, Witnesses and Watchers
+
+To be added.

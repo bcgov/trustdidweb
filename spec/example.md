@@ -4,7 +4,17 @@ The following shows the evolution of a `did:tdw` from inception through several
 versions, showing the DID, DIDDoc, [[ref: DID Log]], and some of the
 intermediate data structures.
 
-In the some of the following examples the data for the [[ref: DID log entries]] is displayed
+::: warning
+
+WARNING: The examples presented in this section are **NOT** aligned with the latest
+revision of the draft specification. As the implementations are updated to match the
+specification, these examples will be updated. In the meantime, they are useful for
+understanding some of the concepts that apply across revisions, even if the details
+vary somewhat.
+
+:::
+
+In some of the following examples the data for the [[ref: DID log entries]] is displayed
 as prettified JSON for readability. In the log itself, the JSON has all
 whitespace removed, and each line ends with a `CR`, per the [[ref: JSON Lines]] convention.
 
@@ -16,7 +26,7 @@ These examples show the important structures used in the [Create (Register)](#cr
 
 The following JSON is an example of the input that the [[ref: DID Controller]]
 constructs and passes into the
-[SCID Generation Process](#scid-generation-and-validation). In this example, the DIDDoc is
+[SCID Generation Process](#scid-generation-and-verification). In this example, the DIDDoc is
 particularly boring, containing the absolute minimum for a valid DIDDoc.
 
 This example includes both the initial "authorized keys" to sign the Data Integrity proof
@@ -56,7 +66,7 @@ are in the `parameters` item in the [[ref: log entry]].
 
 After the SCID is generated, the literal `{SCID}` placeholders are replaced by the
 generated [[ref: SCID]] value (below). This JSON is the input to the
-[`entryHash` generation process](#entry-hash-generation-and-validation) -- with the
+[`entryHash` generation process](#entry-hash-generation-and-verification) -- with the
 [[ref: SCID]] as the first item of the array. Once the process has run, the
 resulting output hash replaces the [[ref: SCID]] as the first item in the array.
 
@@ -91,10 +101,12 @@ resulting output hash replaces the [[ref: SCID]] as the first item in the array.
 
 #### Data Integrity Proof Generation and First Log Entry
 
-The last step in the creation of the first log entry is the generation of the data integrity proof.
-One of the `did:key` DIDs in the `updateKeys` parameter **MUST** be used to generate the signature
-in the proof, with the `entryHash` value used as the `challenge` item. The generated proof is
-added to the JSON Line as the sixth item, and the entire array becomes the first entry in the DID Log.
+The last step in the creation of the first log entry is the generation of the
+data integrity proof. One of the keys in the `updateKeys` parameter **MUST** be
+used (in the form of a [[ref: did:key]]) to generate the signature in the proof,
+with the `entryHash` value used as the `challenge` item. The generated proof is
+added to the JSON Line as the sixth item, and the entire array becomes the first
+entry in the DID Log.
 
 The following is the JSON prettified version of the entry log file that is published
 as the `did.jsonl` file. When published, all extraneous whitespace is removed, as
@@ -188,7 +200,7 @@ hash of the `updateKeys` are found in the previous `nextKeyHashes` item. A new `
 in the `parameters`.
 - The DIDDoc from the previous (first) log entry is extracted and then it and the new DIDDoc are passed into a [[ref: JSON Patch]] implementation to generate the `patch` that is the fourth item of the log entry.
   - This step is not required, and in this case, instead of a patch, the DIDDoc is provided as a `value`, just as with the first log entry.
-- The resulting array is passed into the [`entryHash` generation process](#entry-hash-generation-and-validation) which outputs the `entryHash` for this log entry. The first item in the log entry is replaced with this new `entryHash`.
+- The resulting array is passed into the [`entryHash` generation process](#entry-hash-generation-and-verification) which outputs the `entryHash` for this log entry. The first item in the log entry is replaced with this new `entryHash`.
 - The data integrity proof is generated added to the log entry as the sixth item, and the entire entry is added to the existing DID log.
 
 The DID log file can now be published, optionally with an updated version of the corresponding `did:web` DID.
