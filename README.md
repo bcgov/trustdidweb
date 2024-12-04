@@ -1,4 +1,4 @@
-# Trust DID Web ss now `did:webvh` and has moved to the Decentralized Identity Foundation 
+# Trust DID Web is now `did:webvh` and has moved to the Decentralized Identity Foundation 
 
 The Trust DID Web (`did:tdw`) DID Method and been renamed `did:webvh` ("`did:web` + Verifiable History") and the specification has moved to: [https://identity.foundation/didwebvh](https://identity.foundation/didwebvh/next)
 
